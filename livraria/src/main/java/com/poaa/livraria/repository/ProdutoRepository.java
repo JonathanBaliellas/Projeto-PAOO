@@ -1,12 +1,13 @@
-package repository;
+package com.poaa.livraria.repository;
+
+import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import model.Produto;
+import com.poaa.livraria.model.Produto;
 
 @Repository
 public interface ProdutoRepository extends JpaRepository<Produto, Long>{
-
-    
+    public List<Produto> deleteAllById(Long id);
 }

@@ -1,4 +1,4 @@
-package model;
+package projeto.loja.model;
 
 public class UsuarioLogin {
 	private String nome;

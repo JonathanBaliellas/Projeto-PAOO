@@ -1,4 +1,4 @@
-package model;
+package projeto.loja.model;
 
 import java.util.Date;
 import java.util.List;
