@@ -15,43 +15,43 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.poaa.livraria.model.Editora;
-import com.poaa.livraria.repository.EditoraRepository;
+import com.poaa.livraria.model.Estoque;
+import com.poaa.livraria.repository.EstoqueRepository;
 
 @RestController
-@RequestMapping("/editoras")
+@RequestMapping("/estoque")
 @CrossOrigin(origins = "*", allowedHeaders = "*")
-public class EditoraController {
+public class EstoqueController {
     @Autowired
-    private EditoraRepository repository;
+    private EstoqueRepository repository;
 
-    //Retornar todas as editoras
+    //Retornar todos os itens no estoque
     @GetMapping
-    public ResponseEntity<List<Editora>> getAll(){
+    public ResponseEntity<List<Estoque>> getAll(){
         return ResponseEntity.ok(repository.findAll());
     }
 
-    //Retornar uma editora específica por id
+    //Retornar um item específico do estoque por id
     @GetMapping("/{id}")
-    public ResponseEntity<Editora> getById(@PathVariable long id){
+    public ResponseEntity<Estoque> getById(@PathVariable long id){
         return repository.findById(id)
             .map(resp -> ResponseEntity.ok(resp))
             .orElse(ResponseEntity.notFound().build());
     }
 
-    //Registrar uma editora
+    //Registrar um item no estoque
     @PostMapping
-    public ResponseEntity<Editora> save(@RequestBody Editora editora){
-        return ResponseEntity.status(HttpStatus.CREATED).body(repository.save(editora));
+    public ResponseEntity<Estoque> save(@RequestBody Estoque estoque){
+        return ResponseEntity.status(HttpStatus.CREATED).body(repository.save(estoque));
     }
 
-    //Atualizar uma editora
+    //Atualizar um item de estoque
     @PutMapping
-    public ResponseEntity<Editora> update(@RequestBody Editora editora){
-        return ResponseEntity.status(HttpStatus.OK).body(repository.save(editora));
+    public ResponseEntity<Estoque> update(@RequestBody Estoque estoque){
+        return ResponseEntity.status(HttpStatus.OK).body(repository.save(estoque));
     }
 
-    //Excluir uma editora
+    //Excluir um item de estoque
     @DeleteMapping("/{id}")
     public void delete(@PathVariable long id){
         repository.deleteAllById(id);

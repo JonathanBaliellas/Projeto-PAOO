@@ -15,43 +15,43 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.poaa.livraria.model.Editora;
-import com.poaa.livraria.repository.EditoraRepository;
+import com.poaa.livraria.model.Livro;
+import com.poaa.livraria.repository.LivroRepository;
 
 @RestController
-@RequestMapping("/editoras")
+@RequestMapping("/livros")
 @CrossOrigin(origins = "*", allowedHeaders = "*")
-public class EditoraController {
+public class LivroController {
     @Autowired
-    private EditoraRepository repository;
+    private LivroRepository repository;
 
-    //Retornar todas as editoras
+    //Retornar todos os livros
     @GetMapping
-    public ResponseEntity<List<Editora>> getAll(){
+    public ResponseEntity<List<Livro>> getAll(){
         return ResponseEntity.ok(repository.findAll());
     }
 
-    //Retornar uma editora específica por id
+    //Retornar um livro específico por id
     @GetMapping("/{id}")
-    public ResponseEntity<Editora> getById(@PathVariable long id){
+    public ResponseEntity<Livro> getById(@PathVariable long id){
         return repository.findById(id)
             .map(resp -> ResponseEntity.ok(resp))
             .orElse(ResponseEntity.notFound().build());
     }
 
-    //Registrar uma editora
+    //Registrar um livro
     @PostMapping
-    public ResponseEntity<Editora> save(@RequestBody Editora editora){
-        return ResponseEntity.status(HttpStatus.CREATED).body(repository.save(editora));
+    public ResponseEntity<Livro> save(@RequestBody Livro livro){
+        return ResponseEntity.status(HttpStatus.CREATED).body(repository.save(livro));
     }
 
-    //Atualizar uma editora
+    //Atualizar um livro
     @PutMapping
-    public ResponseEntity<Editora> update(@RequestBody Editora editora){
-        return ResponseEntity.status(HttpStatus.OK).body(repository.save(editora));
+    public ResponseEntity<Livro> update(@RequestBody Livro livro){
+        return ResponseEntity.status(HttpStatus.OK).body(repository.save(livro));
     }
 
-    //Excluir uma editora
+    //Excluir um livro
     @DeleteMapping("/{id}")
     public void delete(@PathVariable long id){
         repository.deleteAllById(id);

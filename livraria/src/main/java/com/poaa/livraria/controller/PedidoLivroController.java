@@ -15,43 +15,43 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.poaa.livraria.model.Editora;
-import com.poaa.livraria.repository.EditoraRepository;
+import com.poaa.livraria.model.PedidoLivro;
+import com.poaa.livraria.repository.PedidoLivroRepository;
 
 @RestController
-@RequestMapping("/editoras")
+@RequestMapping("/pedidos-livros")
 @CrossOrigin(origins = "*", allowedHeaders = "*")
-public class EditoraController {
+public class PedidoLivroController {
     @Autowired
-    private EditoraRepository repository;
+    private PedidoLivroRepository repository;
 
-    //Retornar todas as editoras
+    //Retornar todos os livros dos pedidos
     @GetMapping
-    public ResponseEntity<List<Editora>> getAll(){
+    public ResponseEntity<List<PedidoLivro>> getAll(){
         return ResponseEntity.ok(repository.findAll());
     }
 
-    //Retornar uma editora específica por id
+    //Retornar um item de pedidoLivro específico por id
     @GetMapping("/{id}")
-    public ResponseEntity<Editora> getById(@PathVariable long id){
+    public ResponseEntity<PedidoLivro> getById(@PathVariable long id){
         return repository.findById(id)
             .map(resp -> ResponseEntity.ok(resp))
             .orElse(ResponseEntity.notFound().build());
     }
 
-    //Registrar uma editora
+    //Registrar um livro de um pedido
     @PostMapping
-    public ResponseEntity<Editora> save(@RequestBody Editora editora){
-        return ResponseEntity.status(HttpStatus.CREATED).body(repository.save(editora));
+    public ResponseEntity<PedidoLivro> save(@RequestBody PedidoLivro pedidoLivro){
+        return ResponseEntity.status(HttpStatus.CREATED).body(repository.save(pedidoLivro));
     }
 
-    //Atualizar uma editora
+    //Atualizar um livro de um pedido
     @PutMapping
-    public ResponseEntity<Editora> update(@RequestBody Editora editora){
-        return ResponseEntity.status(HttpStatus.OK).body(repository.save(editora));
+    public ResponseEntity<PedidoLivro> update(@RequestBody PedidoLivro pedidoLivro){
+        return ResponseEntity.status(HttpStatus.OK).body(repository.save(pedidoLivro));
     }
 
-    //Excluir uma editora
+    //Excluir um livro de um pedido
     @DeleteMapping("/{id}")
     public void delete(@PathVariable long id){
         repository.deleteAllById(id);

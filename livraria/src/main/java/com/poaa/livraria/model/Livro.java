@@ -16,7 +16,7 @@ public class Livro {
     private String isbn;
     private String autor;
     private String categoria;
-    private long id_editora;
+    private long editora_id;
     private int ano_publicacao;
     private double valor;
 
@@ -50,11 +50,11 @@ public class Livro {
     public void setCategoria(String categoria) {
         this.categoria = categoria;
     }
-    public long getId_editora() {
-        return id_editora;
+    public long getEditora_id() {
+        return editora_id;
     }
-    public void setId_editora(long id_editora) {
-        this.id_editora = id_editora;
+    public void setEditora_id(long editora_id) {
+        this.editora_id = editora_id;
     }
     public int getAno_publicacao() {
         return ano_publicacao;

@@ -15,43 +15,43 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.poaa.livraria.model.Produto;
-import com.poaa.livraria.repository.ProdutoRepository;
+import com.poaa.livraria.model.Pedido;
+import com.poaa.livraria.repository.PedidoRepository;
 
 @RestController
-@RequestMapping("/produtos")
+@RequestMapping("/pedidos")
 @CrossOrigin(origins = "*", allowedHeaders = "*")
-public class ProdutoController {
+public class PedidoController {
     @Autowired
-    private ProdutoRepository repository;
+    private PedidoRepository repository;
 
-    //Retornar todos os produtos
+    //Retornar todos os pedidos
     @GetMapping
-    public ResponseEntity<List<Produto>> getAll(){
+    public ResponseEntity<List<Pedido>> getAll(){
         return ResponseEntity.ok(repository.findAll());
     }
 
-    //Retornar um produto específico por id
+    //Retornar um pedido específico por id
     @GetMapping("/{id}")
-    public ResponseEntity<Produto> getById(@PathVariable long id){
+    public ResponseEntity<Pedido> getById(@PathVariable long id){
         return repository.findById(id)
             .map(resp -> ResponseEntity.ok(resp))
             .orElse(ResponseEntity.notFound().build());
     }
 
-    //Registrar um produto
+    //Registrar um pedido
     @PostMapping
-    public ResponseEntity<Produto> save(@RequestBody Produto produto){
-        return ResponseEntity.status(HttpStatus.CREATED).body(repository.save(produto));
+    public ResponseEntity<Pedido> save(@RequestBody Pedido pedido){
+        return ResponseEntity.status(HttpStatus.CREATED).body(repository.save(pedido));
     }
 
-    //Atualizar um produto
+    //Atualizar um pedido
     @PutMapping
-    public ResponseEntity<Produto> update(@RequestBody Produto produto){
-        return ResponseEntity.status(HttpStatus.OK).body(repository.save(produto));
+    public ResponseEntity<Pedido> update(@RequestBody Pedido pedido){
+        return ResponseEntity.status(HttpStatus.OK).body(repository.save(pedido));
     }
 
-    //Excluir um produto
+    //Excluir um pedido
     @DeleteMapping("/{id}")
     public void delete(@PathVariable long id){
         repository.deleteAllById(id);
