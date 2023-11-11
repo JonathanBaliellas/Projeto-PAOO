@@ -53,7 +53,9 @@ public class PedidoLivroController {
 
     //Excluir um livro de um pedido
     @DeleteMapping("/{id}")
-    public void delete(@PathVariable long id){
-        repository.deleteAllById(id);
+    public ResponseEntity<String> delete(@PathVariable long id){
+        repository.deleteById(id);
+        String mensagem = "Item excluído do pedido com sucesso!";
+        return ResponseEntity.ok(mensagem);
     }
 }

@@ -53,7 +53,9 @@ public class EstoqueController {
 
     //Excluir um item de estoque
     @DeleteMapping("/{id}")
-    public void delete(@PathVariable long id){
-        repository.deleteAllById(id);
+    public ResponseEntity<String> delete(@PathVariable long id){
+        repository.deleteById(id);
+        String mensagem = "Item excluído do estoque com sucesso!";
+        return ResponseEntity.ok(mensagem);
     }
 }

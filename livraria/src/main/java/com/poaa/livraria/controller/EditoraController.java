@@ -53,7 +53,9 @@ public class EditoraController {
 
     //Excluir uma editora
     @DeleteMapping("/{id}")
-    public void delete(@PathVariable long id){
-        repository.deleteAllById(id);
+    public ResponseEntity<String> delete(@PathVariable long id){
+        repository.deleteById(id);
+        String mensagem = "Editora excluído com sucesso!";
+        return ResponseEntity.ok(mensagem);
     }
 }

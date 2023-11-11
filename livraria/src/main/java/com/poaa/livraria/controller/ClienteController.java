@@ -53,7 +53,9 @@ public class ClienteController {
 
     //Excluir um cliente
     @DeleteMapping("/{id}")
-    public void delete(@PathVariable long id){
-        repository.deleteAllById(id);
+    public ResponseEntity<String> delete(@PathVariable long id){
+        repository.deleteById(id);
+        String mensagem = "Cliente excluído com sucesso!";
+        return ResponseEntity.ok(mensagem);
     }
 }

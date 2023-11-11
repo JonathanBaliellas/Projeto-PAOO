@@ -53,7 +53,9 @@ public class LivroController {
 
     //Excluir um livro
     @DeleteMapping("/{id}")
-    public void delete(@PathVariable long id){
-        repository.deleteAllById(id);
+    public ResponseEntity<String> delete(@PathVariable long id){
+        repository.deleteById(id);
+        String mensagem = "Livro excluído com sucesso!";
+        return ResponseEntity.ok(mensagem);
     }
 }
